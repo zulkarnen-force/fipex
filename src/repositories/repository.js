@@ -1,27 +1,52 @@
+import User from '../entities/user.js'
+
 
 class Repository {
-    constructor (model) {
+    constructor (model = User) {
         this.model = model
     }
 
+    async create(data) {
+        try {
+            await this.model.create(data)
+        } catch (e) {
+            throw e
+        }
+    }
+
+
     async list() {
-        this.model.getAll()
+        return this.model.find()
     }
 
     
-    async findOne() {
-
+    async findOne(query) {
+        try {
+            return this.model.findOne(query)
+        } catch (err) {
+            throw err
+        }
     }
 
     
-    async Delete() {
-
+    async findById(id) {
+        try {
+            return this.model.findById(id)
+        } catch (err) {
+            throw err
+        }
     }
 
-
-    async Create() {
-
+    
+           
+    async delete(query) {
+        try {
+            return this.model.deleteOne(query)
+        } catch (err) {
+            throw err
+        }
     }
+    
 }
 
 export default Repository

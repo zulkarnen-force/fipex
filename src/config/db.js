@@ -1,9 +1,9 @@
 import { mongoose } from "mongoose"
 
-async function getDB() {
+async function connectDB() {
   
   try {
-    let db = await mongoose.connect('mongodb://127.0.0.1:27017/fipex');
+    let db = await mongoose.connect(process.env.URI_DB);
     return db
   } catch (err) {
     throw err
@@ -11,4 +11,4 @@ async function getDB() {
 
 }
 
-export default  getDB 
+export default connectDB 
