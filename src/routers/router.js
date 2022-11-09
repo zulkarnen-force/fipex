@@ -1,0 +1,2 @@
+router.use("/users", userController)
+
