@@ -29,6 +29,15 @@ class Service {
             throw err
         }
     }
+
+
+    async getByQuery(query) {
+        try {
+            return await this.repo.findOne(query)
+        } catch (err) {
+            throw err
+        }
+    }
 }
 
 export default Service
