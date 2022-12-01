@@ -1,22 +1,21 @@
 import { WebSocketServer } from "ws";
 
-function makeWebSocket(server) {
-    let  wss  = new WebSocketServer({server})
+class WebSocket {
+    constructor(server) {
+        this.server = server
+        this.wss = new WebSocketServer({server})
+        return this.wss
+    }
 
-    wss.on('connection', (ws) => {
+    static getInstance() {
+        console.log("this.wss", this.wss)
+        if (this.wss) {
+            return this.wss
+        }
 
-        //connection is up, let's add a simple simple event
-        ws.on('message', (message) => {
-    
-            //log the received message and send it back to the client
-            console.log('received: %s', message);
-            ws.send(`Hello, you sent -> ${message}`);
-        });
-        
-        ws.send("connect brader");
-    
-        console.log(ws)
-    })
+        return new WebSocket(this.server)
+    }
+
 }
 
-export default makeWebSocket
+export default WebSocket

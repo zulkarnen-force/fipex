@@ -5,6 +5,7 @@ import bcryptPassword from '../utils/bcrypt.js';
 const userSchema = new Schema({
   id: {
     type:String,
+    unique: true,
   },
   email: {
     type: String,

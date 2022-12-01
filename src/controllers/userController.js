@@ -2,6 +2,9 @@ import express from "express"
 import User from "../entities/user.js"
 import Repository from "../repositories/repository.js"
 import Service from "../services/service.js"
+import WebSocket from "../socket/wsserver.js"
+
+
 
 let userController = express.Router()
 
@@ -11,7 +14,7 @@ let service = new Service(userRepo)
 userController.post("/", async function(req, res) {
     try {
         let result = await service.create(req.body)  
-        res.json(result)
+        return res.json(result)
     } catch (err) {
         res.status(400).json({
             error: err.message
